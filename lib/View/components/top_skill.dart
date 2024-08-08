@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/Responsive/responsive.dart';
 import 'package:portfolio_website/Utils/colors.dart';
-import '../../Responsive/responsive.dart';
 
 class TopSkills extends StatelessWidget {
   const TopSkills({super.key});
@@ -10,7 +10,7 @@ class TopSkills extends StatelessWidget {
     return Column(
       children: [
         const Text(
-          'My Top Skills',
+          "My Top Skills",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class TopSkills extends StatelessWidget {
           ),
           child: const Wrap(
             children: [
-              SkillCard(
+             SkillCard(
                 url:
                     'https://cdn.iconscout.com/icon/free/png-256/flutter-2038877-1720090.png',
               ),
@@ -55,23 +55,20 @@ class TopSkills extends StatelessWidget {
 
 class SkillCard extends StatelessWidget {
   final String url;
-  const SkillCard({
-    super.key,
-    required this.url,
-  });
+  const SkillCard({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15),
       child: DecoratedBox(
         decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
-              color:shadoColor,
+              color: shadoColor,
               blurRadius: 6,
               spreadRadius: 4,
-            )
+            ),
           ],
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -85,9 +82,9 @@ class SkillCard extends StatelessWidget {
               : 80,
           child: Padding(
             padding: Responsive.isMobile(context)
-                ? const EdgeInsets.all(10.0)
-                : const EdgeInsets.all(30.0),
-            child: Image.network(url),
+                ? const EdgeInsets.all(10)
+                : const EdgeInsets.all(30),
+                child: Image.network(url),
           ),
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/Responsive/responsive.dart';
 import 'package:portfolio_website/Utils/colors.dart';
-
-import '../../Responsive/responsive.dart';
 
 class ContactForm extends StatelessWidget {
   const ContactForm({super.key});
@@ -10,7 +9,6 @@ class ContactForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 5),
         const Text(
           "Get In Touch With Us",
           style: TextStyle(
@@ -21,14 +19,16 @@ class ContactForm extends StatelessWidget {
         const SizedBox(height: 10),
         SizedBox(
           width: Responsive.isMobile(context)
-              // if the device is mobile then it takes the 90% of it's total width of screen
               ? Responsive.widthOfScreen(context) * 0.9
-              // otherwise it takes the 80% of the total width of screen
               : Responsive.widthOfScreen(context) * 0.7,
           child: DecoratedBox(
             decoration: BoxDecoration(
               boxShadow: const [
-                BoxShadow(color: shadoColor, blurRadius: 4, spreadRadius: 2),
+                BoxShadow(
+                  color: shadoColor,
+                  blurRadius: 4,
+                  spreadRadius: 2,
+                ),
               ],
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -39,14 +39,15 @@ class ContactForm extends StatelessWidget {
                 children: [
                   contactFormField("Name*", 1, "Your Name"),
                   contactFormField("Email*", 1, "Your Email"),
-                  contactFormField("Phone Number", 1, "Your Phone Number"),
+                  contactFormField("Phone Number", 1, "Your Number"),
                   contactFormField("Message*", 10, "Your Message"),
                   Row(
                     children: [
                       Expanded(
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
-                              backgroundColor: Colors.blue),
+                            backgroundColor: Colors.blue,
+                          ),
                           onPressed: () {},
                           child: const Text(
                             "Submit",
@@ -59,12 +60,12 @@ class ContactForm extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -88,17 +89,16 @@ class ContactForm extends StatelessWidget {
             child: TextField(
               maxLines: maxLine,
               decoration: InputDecoration(
-                hintText: hintText,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
+                  hintText: hintText,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
                   ),
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-              ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  )),
             ),
           ),
         ],

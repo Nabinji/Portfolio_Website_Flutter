@@ -1,107 +1,93 @@
 import 'package:flutter/material.dart';
-import '../Utils/colors.dart';
-import 'components/contact_form.dart';
-import 'components/footer.dart';
-import 'components/profile_and_intro.dart';
-import 'components/topbar.dart';
-import 'components/more_about_me.dart';
-import 'components/my_drawer.dart';
-import 'components/recent_projects.dart';
-import 'components/social_icons_bar.dart';
-import 'components/top_skills.dart';
-import '../Responsive/responsive.dart';
+import 'package:portfolio_website/Responsive/responsive.dart';
+import 'package:portfolio_website/Utils/colors.dart';
+import 'package:portfolio_website/View/Components/about_me.dart';
+import 'package:portfolio_website/View/Components/drawer.dart';
+import 'package:portfolio_website/View/Components/prfile_and_intro.dart';
+import 'package:portfolio_website/View/Components/recent_project.dart';
+import 'package:portfolio_website/View/Components/social_icons.dart';
+import 'package:portfolio_website/View/Components/top_skill.dart';
+import 'package:portfolio_website/View/components/contact_form.dart';
+import 'package:portfolio_website/View/components/footer.dart';
+import 'package:portfolio_website/View/components/topbar.dart';
 
 class DeveloperPortFolio extends StatelessWidget {
   DeveloperPortFolio({super.key});
-  final ScrollController myScrollController = ScrollController();
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      key: _globalKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: false,
         title: const Text(
-          'Nabin Paudyal',
+          "Nabin Paudyal",
           style: TextStyle(
-            fontFamily: "Verdana",
-            fontSize: 28,
-            color: textColor,
+            fontSize: 26,
             fontWeight: FontWeight.w900,
+            color: textColor,
           ),
         ),
         backgroundColor: Colors.white,
-        toolbarHeight: 70,
         elevation: 3,
-        // top  bar
+        toolbarHeight: 70,
         actions: [
           Responsive.isMobile(context)
               ? Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 13),
                   child: IconButton(
+                    onPressed: () {
+                      _globalKey.currentState!.openEndDrawer();
+                    },
                     icon: const Icon(
                       Icons.menu,
                       color: textColor,
-                      size: 30,
+                      size: 35,
                     ),
-                    onPressed: () {
-                      _scaffoldKey.currentState!.openEndDrawer();
-                    },
                   ),
                 )
               : TopBar(
-                  sc: myScrollController,
+                  scrollController: _scrollController,
                 ),
         ],
       ),
       endDrawer: Responsive.isMobile(context)
-          ? MyDrawer(
-              sc: myScrollController,
-            )
+          ? MyDrawer(scrollController: _scrollController)
           : null,
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          mini: Responsive.isMobile(context) ? true : false,
-          onPressed: () {
-            myScrollController.animateTo(
-              0,
-              duration: const Duration(milliseconds: 800),
-              curve: Curves.easeInQuad,
-            );
-          },
-          child: const Icon(
-            Icons.vertical_align_top,
-            size: 35,
-          )),
       body: SafeArea(
         child: Stack(
           children: [
-            // for body parts
+            // for Body parts
             SingleChildScrollView(
-              controller: myScrollController,
-              child: const Column(
+              controller: _scrollController,
+              child: Column(
                 children: [
-                  ProfileAndIntro(),
-                  AboutMe(),
-                  SizedBox(height: 50),
-                  TopSkills(),
-                  SizedBox(height: 50),
-                  RecentProjects(),
-                  SizedBox(height: 50),
-                  ContactForm(),
-                  SizedBox(height: 50),
-                  Footer(),
-                  SizedBox(height: 20),
+                  const ProfileAndIntro(),
+                  SizedBox(height: Responsive.isMobile(context) ? 40 : 0),
+                  const AboutMe(),
+                  const SizedBox(height: 55),
+                  const TopSkills(),
+                  const SizedBox(height: 55),
+                  const RecentProject(),
+                  const SizedBox(height: 55),
+                  const ContactForm(),
+                  const SizedBox(height: 55),
+                  const Footer(),
+                  const SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
             ),
-            // for social icon
-            const SocialIcons(),
+            const SocialIcons()
           ],
         ),
       ),
     );
   }
 }
+// now we make when we click on skill in top bar it show the skill section by scrolling 
+// now at last we add the social site

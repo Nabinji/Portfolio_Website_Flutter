@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../Utils/colors.dart';
-import 'topbar.dart';
+import 'package:portfolio_website/Utils/colors.dart';
+import 'package:portfolio_website/View/Components/topbar.dart';
 
 class MyDrawer extends StatelessWidget {
-  final ScrollController sc;
-  const MyDrawer({super.key, required this.sc});
+  final ScrollController scrollController;
+  const MyDrawer({super.key, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,9 @@ class MyDrawer extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(child: TopBar(sc: sc)),
+      body: Center(
+        child: TopBar(scrollController: scrollController),
+      ),
     );
   }
 }
